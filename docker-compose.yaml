@@ -1,0 +1,51 @@
+
+version: '4'
+services:
+  app1:
+    image: ${APP1_IMAGE}
+    tty: true
+    ports:
+      - "80-88:${APP1_PORT}"
+    command: sh -c "apt-get update && apt-get install stress -y"
+    deploy:
+      replicas: ${APP1_LOWER_LIMIT}
+    environment:
+      - APP1_NAME=${APP1_NAME}
+      - APP1_SCALE_IN_threshold=${APP1_SCALE_IN_threshold}
+      - APP1_SCALE_OUT_threshold=${APP1_SCALE_OUT_threshold}
+      - APP1_ALLOCATED_CPU=${APP1_ALLOCATED_CPU}
+      - APP1_COOL_DOWN=${APP1_COOL_DOWN}
+      - APP1_UPPER_LIMIT=${APP1_UPPER_LIMIT}
+      - APP1_LOWER_LIMIT=${APP1_LOWER_LIMIT}
+  app2:
+    image: ${APP2_IMAGE}
+    tty: true
+    ports:
+      - "8080-8088:${APP2_PORT}"
+    deploy:
+      replicas: ${APP2_LOWER_LIMIT}
+    environment:
+      - APP2_NAME=${APP2_NAME}
+      - APP2_SCALE_IN_threshold=${APP2_SCALE_IN_threshold}
+      - APP2_SCALE_OUT_threshold=${APP2_SCALE_OUT_threshold}
+      - APP2_ALLOCATED_CPU=${APP2_ALLOCATED_CPU}
+      - APP2_COOL_DOWN=${APP2_COOL_DOWN}
+      - APP2_UPPER_LIMIT=${APP2_UPPER_LIMIT}
+      - APP2_LOWER_LIMIT=${APP2_LOWER_LIMIT}
+    command: sh -c "apt-get update && apt-get install stress -y"
+  app3:
+    image: ${APP3_IMAGE}
+    tty: true
+    ports:
+      - "9000-9008:${APP3_PORT}"    
+    command: sh -c "apt-get update && apt-get install stress -y"
+    deploy:	
+      replicas: ${APP3_LOWER_LIMIT}
+    environment:
+      - APP3_NAME=${APP3_NAME}
+      - APP3_SCALE_IN_threshold=${APP3_SCALE_IN_threshold}
+      - APP3_SCALE_OUT_threshold=${APP3_SCALE_OUT_threshold}
+      - APP3_ALLOCATED_CPU=${APP3_ALLOCATED_CPU}
+      - APP3_COOL_DOWN=${APP3_COOL_DOWN}
+      - APP3_UPPER_LIMIT=${APP3_UPPER_LIMIT}
+      - APP3_LOWER_LIMIT=${APP3_LOWER_LIMIT}
